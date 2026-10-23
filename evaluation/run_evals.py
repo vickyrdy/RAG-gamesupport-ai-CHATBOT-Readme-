@@ -55,6 +55,7 @@ def main():
                     model=judge,
                     threshold=0.8,
                     async_mode=False,
+                    verbose_mode=True,
                 ),
             ]
 
