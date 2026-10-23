@@ -7,3 +7,8 @@ models/
 *.sqlite
 *.sqlite-shm
 *.sqlite-wal
+# Local evaluation state and generated reports
+.deepeval/
+evaluation/results.json
+evaluation/multiturn_results.json
+evaluation/redteam_results.json

@@ -1,5 +1,8 @@
 import json
 import re
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
+from fastapi.responses import FileResponse
 from contextlib import asynccontextmanager
 from threading import Lock
 from app.guardrails import check_input, redact_output
@@ -28,7 +31,16 @@ app = FastAPI(
     title="GameSupport AI",
     lifespan=lifespan,
 )
-
+app.mount(
+    "/static",
+    StaticFiles(directory=Path(__file__).resolve().parent / "static"),
+    name="static",
+)
+@app.get("/", include_in_schema=False)
+def frontend():
+    return FileResponse(
+        Path(__file__).resolve().parent / "static" / "index.html"
+    )
 
 class ChatRequest(BaseModel):
     user_id: str = Field(min_length=1, max_length=100)
