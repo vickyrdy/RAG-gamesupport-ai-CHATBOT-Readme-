@@ -1,5 +1,6 @@
 import json
 import re
+import os
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 from fastapi.responses import FileResponse
@@ -19,7 +20,7 @@ chat_lock = Lock()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     with SqliteSaver.from_conn_string(
-        str(ROOT / "chat.sqlite")
+        os.getenv("CHAT_DB_PATH", str(ROOT / "chat.sqlite"))
     ) as checkpointer:
         app.state.graph = builder.compile(
             checkpointer=checkpointer
