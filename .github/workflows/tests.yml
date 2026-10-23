@@ -27,6 +27,9 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
 
+      - name: Index support documents
+        run: python -m app.ingest
+
       - name: Run offline tests
         run: |
           python -m pytest tests/ -v
