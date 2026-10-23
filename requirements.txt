@@ -1,0 +1,11 @@
+langgraph
+langgraph-checkpoint-sqlite
+langchain-groq
+langchain-text-splitters
+qdrant-client[fastembed]
+fastapi
+uvicorn
+pydantic
+python-dotenv
+pytest
+httpx
